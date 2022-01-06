@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/products",
-      "handler": "product.findProduct",
+      "path": "/gender-categories",
+      "handler": "gender-category.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/products/count",
-      "handler": "product.count",
+      "path": "/gender-categories/count",
+      "handler": "gender-category.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/products/:id",
-      "handler": "product.findProductDetail",
+      "path": "/gender-categories/:id",
+      "handler": "gender-category.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/products",
-      "handler": "product.create",
+      "path": "/gender-categories",
+      "handler": "gender-category.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/products/:id",
-      "handler": "product.update",
+      "path": "/gender-categories/:id",
+      "handler": "gender-category.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/products/:id",
-      "handler": "product.delete",
+      "path": "/gender-categories/:id",
+      "handler": "gender-category.delete",
       "config": {
         "policies": []
       }

@@ -15,6 +15,10 @@
     "products": {
       "collection": "product",
       "via": "category"
+    },
+    "gender_category": {
+      "via": "categories",
+      "model": "gender-category"
     }
   }
 }
