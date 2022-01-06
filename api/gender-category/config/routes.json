@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/gender-categories",
+      "handler": "gender-category.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/gender-categories/count",
+      "handler": "gender-category.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/gender-categories/:id",
+      "handler": "gender-category.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/gender-categories",
+      "handler": "gender-category.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/gender-categories/:id",
+      "handler": "gender-category.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/gender-categories/:id",
+      "handler": "gender-category.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
