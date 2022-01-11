@@ -11,6 +11,7 @@
     },
     "devDependencies": {},
     "dependencies": {
+        "bcrypt": "^5.0.1",
         "elastic-apm-node": "^3.7.0",
         "knex": "<0.20.0",
         "mysql2": "^2.3.3",
