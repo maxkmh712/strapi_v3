@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "people",
+  "info": {
+    "name": "people"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "birth": {
+      "type": "date"
+    },
+    "point": {
+      "type": "integer",
+      "default": 1000
+    },
+    "password": {
+      "type": "password"
+    }
+  }
+}
