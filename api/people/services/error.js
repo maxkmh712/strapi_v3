@@ -33,6 +33,8 @@ const errorHandle = {
   }
 }
 
-const errorHandler = key => strapi.services.common.errorHandlerV2('User', errorHandle, key)
-
+const errorHandler = (key) => {
+  const result = strapi.services.common.errorHandlerV2('User', errorHandle, key)
+  return result
+}
 module.exports = { errorHandler }
