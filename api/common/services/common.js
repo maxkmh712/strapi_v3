@@ -14,8 +14,19 @@ const errorHandlerV2 = (api, errorHandle, message) => {
           api
       }
   }
-
   return error
 }
 
-module.exports = { responseParser , errorHandlerV2}
+const productErrorHandler = (api, errorHandle, message) => {
+  const error = errorHandle[message]
+  if (!error) {
+      return {
+          id: `Out.of.control.error`,
+          message,
+          api
+      }
+  }
+  return error
+}
+
+module.exports = { responseParser , errorHandlerV2, productErrorHandler}

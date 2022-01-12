@@ -19,7 +19,7 @@
     {
       "method": "GET",
       "path": "/products/:id",
-      "handler": "product.findProductDetail",
+      "handler": "product.findOneProduct",
       "config": {
         "policies": []
       }

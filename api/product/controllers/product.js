@@ -6,21 +6,34 @@
  */
 
 const findProduct = async ctx => {
-  const { responseParser } = strapi.services.common;
-  const query = ctx.request.query;
-  const { productList } = strapi.services.product;
-  const data = await productList(query)
+  const { errorHandler } = require("../services/error")
+  const productInfo = ctx.request.query;
+  const { getProductList } = strapi.services.product;
 
-  return responseParser(data, 200)
+  try {
+    const data = await getProductList(productInfo);
+    return ctx.send(data, 200);
+  } catch (error) {
+    console.error(error);
+    const errorInfo = errorHandler(error.message);
+    return ctx.send(errorInfo, 404);
+  }
 }
 
-const findProductDetail = async ctx => {
-  const { responseParser } = strapi.services.common;
-  const id = ctx.params.id;
-  const { productDetail } = strapi.services.product;
-  const data = await productDetail(id)
+// 컨트롤러
+const findOneProduct = async ctx => {
+  const { errorHandler } = require("../services/error");
+  const product_id = ctx.params.id;
+  const { getProductDetail } = strapi.services.product;
 
-  return responseParser(data, 200)
+  try{
+    const product = await getProductDetail(product_id);
+    return ctx.send(product, 200);
+  } catch (error) {
+    console.error(error);
+    const errorInfo = errorHandler(error.message);
+    return ctx.send(errorInfo, 404);
+  }
 }
 
-module.exports = { findProduct, findProductDetail };
+module.exports = { findProduct, findOneProduct };
