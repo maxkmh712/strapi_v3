@@ -20,9 +20,19 @@ const errorHandle = {
     id : 'Invalid.user.birth',
     statuscode : 400,
     message : "생년월일 형식이 맞지 않습니다."
+  },
+  USER_DOSE_NOT_EXIST : {
+    id : 'User.does.not.exist',
+    statuscode : 401,
+    message : '존재하지 않는 유저입니다.'
+  },
+  USER_PASSWORD_INCORRECT : {
+    id : 'User.password.incorrect',
+    statuscode : 401,
+    message : "비밀번호가 틀렸습니다."
   }
 }
 
-const errorHandler = key => strapi.services.common.errorHandlerV2('유저', errorHandle, key)
+const errorHandler = key => strapi.services.common.errorHandlerV2('User', errorHandle, key)
 
 module.exports = { errorHandler }
