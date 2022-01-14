@@ -1,0 +1,20 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/likes",
+      "handler": "like.findLike",
+      "config": {
+        "policies": ["people.checkLogin"]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/likes/:id",
+      "handler": "like.createOrDeleteLike",
+      "config": {
+        "policies": ["people.checkLogin"]
+      }
+    }
+  ]
+}

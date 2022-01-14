@@ -25,6 +25,10 @@ const checkEmail = async (email) => {
   return user;
 }
 
+const checkUserId = async (id) => {
+  const user = await strapi.query('people').findOne({id : id});
+  return user;
+}
 const checkPassword = async (user, password) => {
   const bcrypt = require('bcrypt');
   const check = await bcrypt.compare(password, user.password);
@@ -56,6 +60,7 @@ const createToken = async (id) => {
   const jwt = require('jsonwebtoken')
   const algorithm = process.env.ALGORITHM
   const expiresIn = process.env.EXPIRES_IN
+  console.log(id)
   const accessToken = jwt.sign({id : id}, process.env.SECRET_KEY, { 
     algorithm : algorithm,
     expiresIn : expiresIn
@@ -66,6 +71,7 @@ const createToken = async (id) => {
 module.exports = {
   createUser, 
   checkEmail, 
+  checkUserId,
   checkPassword,
   verifyEmail, 
   verifyPassword, 

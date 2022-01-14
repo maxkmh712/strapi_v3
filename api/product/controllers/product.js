@@ -20,7 +20,6 @@ const findProduct = async ctx => {
   }
 }
 
-// 컨트롤러
 const findOneProduct = async ctx => {
   const { errorHandler } = require("../services/error");
   const product_id = ctx.params.id;
