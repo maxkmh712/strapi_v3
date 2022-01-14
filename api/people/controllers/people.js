@@ -33,6 +33,7 @@ const signIn = async ctx => {
   try {
     if (!(await checkEmail(userdata.email))) throw Error("USER_DOSE_NOT_EXIST")
     const user = await checkEmail(userdata.email)
+    console.log(user.id)
     if (await checkPassword(user, userdata.password)==false) throw Error("USER_PASSWORD_INCORRECT")
 
     const accessToken = await createToken(user.id)

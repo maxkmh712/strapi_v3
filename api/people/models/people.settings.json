@@ -26,6 +26,10 @@
     },
     "password": {
       "type": "password"
+    },
+    "likes": {
+      "via": "person",
+      "collection": "like"
     }
   }
 }

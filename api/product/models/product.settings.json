@@ -19,8 +19,12 @@
       "type": "string"
     },
     "category": {
-      "via": "products",
-      "model": "category"
+      "model": "category",
+      "via": "products"
+    },
+    "likes": {
+      "via": "product",
+      "collection": "like"
     }
   }
 }

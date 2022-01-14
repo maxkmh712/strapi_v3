@@ -38,10 +38,7 @@ const getProductList = async query => {
   return data;
 }
 
-
-// 서비스
 const getProductDetail = async id => {
-  console.log(id)
   const product = await strapi.query("product").findOne({ id : id })
   if (!product) throw Error("PRODUCT_DOES_NOT_EXIST")
   const data = {
