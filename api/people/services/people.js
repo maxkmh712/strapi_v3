@@ -1,16 +1,18 @@
 'use strict';
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-/**
- * Read the documentation (https://strapi.io/documentation/v3.x/concepts/services.html#core-services)
- * to customize this service
- */
 
-const createUser = async (userdata) => {
-  const {email, name, password, birth} = userdata;
-  const bcrypt = require('bcrypt');
+const hashPassword = async password => {
   const saltRounds = 10;
   const salt = await bcrypt.genSalt(saltRounds);
   const hashedPassword = await bcrypt.hash(password, salt);
+  return hashedPassword;
+}
+
+const createUser = async (userdata) => {
+  const {email, name, password, birth} = userdata;
+  const hashedPassword = await hashPassword(password)
   const user = await strapi.query('people').create({
     email : email,
     name : name,
@@ -20,17 +22,21 @@ const createUser = async (userdata) => {
   return user
 }
 
-const checkEmail = async (email) => {
+const existEmail = async email => {
   const user = await strapi.query('people').findOne({email : email});
-  return user;
+  return user ? true : false
 }
 
-const checkUserId = async (id) => {
+const getUserByEmail = async email => {
+  const user = await strapi.query('people').findOne({email : email});
+  return user
+}
+
+const getUserById = async (id) => {
   const user = await strapi.query('people').findOne({id : id});
   return user;
 }
-const checkPassword = async (user, password) => {
-  const bcrypt = require('bcrypt');
+const comparePassword = async (user, password) => {
   const check = await bcrypt.compare(password, user.password);
   return check
 }
@@ -50,32 +56,21 @@ const verifyBirth = async (birth) => {
   return birthRegExp.test(birth)
 }
 
-const userLogIn = async (userdata) => {
-  const { email } = userdata;
-  const login_user = await strapi.query('people').findOne({ email : email });
-  return login_user
-}
-
 const createToken = async (id) => {
-  const jwt = require('jsonwebtoken')
-  const algorithm = process.env.ALGORITHM
-  const expiresIn = process.env.EXPIRES_IN
-  console.log(id)
-  const accessToken = jwt.sign({id : id}, process.env.SECRET_KEY, { 
-    algorithm : algorithm,
-    expiresIn : expiresIn
-  });
+  const {ALGORITHM, EXPIRES_IN, SECRET_KEY} = process.env
+  const accessToken = jwt.sign({id : id}, SECRET_KEY, { algorithm : ALGORITHM, expiresIn : EXPIRES_IN });
   return accessToken
 }
 
 module.exports = {
-  createUser, 
-  checkEmail, 
-  checkUserId,
-  checkPassword,
+  hashPassword,
+  createUser,
+  existEmail,
+  getUserByEmail, 
+  getUserById,
+  comparePassword,
   verifyEmail, 
   verifyPassword, 
   verifyBirth, 
-  userLogIn, 
   createToken
 }

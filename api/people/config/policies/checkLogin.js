@@ -1,13 +1,14 @@
 module.exports = async (ctx, next) => {
   const { errorHandler } = require("../../services/error");
-  const { checkUserId } = require("../../services/people");
+  const { getUserById } = require("../../services/people");
   const jwt = require('jsonwebtoken');
   const secretKey = process.env.SECRET_KEY;
   const { token } = ctx.request.headers;
 
   try {
     const { id } = await jwt.verify(token, secretKey);
-    const user = await checkUserId(id);
+    const user = await getUserById(id);
+    
     if (!user) throw Error;
     ctx.request.user = user;
     return await next();
